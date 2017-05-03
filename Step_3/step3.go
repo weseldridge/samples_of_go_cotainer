@@ -27,9 +27,9 @@ func run() {
 	// Execute what ever we passed in.
 	cmd := exec.Command(os.Args[2], os.Args[3:]...)
 
-	// Unixs Timeshare System... Give me new namespace.
+	// Clone New PID
 	cmd.SysProcAttr = &syscall.SysProcAttr{
-		Cloneflags: syscall.CLONE_NEWUTS,
+		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWPID,
 	}
 
 	// Connect Standard I/O so we see whats going on
